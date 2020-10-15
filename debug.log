@@ -1,1 +1,4 @@
 [1010/103105.089:ERROR:http_transport_win.cc(276)] WinHttpSendRequest: The operation completed successfully. (0x0)
+[1015/142711.937:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Lenovo\AppData\Local\Temp\karma-89348060\Crashpad\attachments\1aa64628-68fb-4282-a4d0-f1690149829a: The system cannot find the path specified. (0x3)
+[1015/142734.021:ERROR:http_transport_win.cc(276)] WinHttpSendRequest: The operation completed successfully. (0x0)
+[1015/143451.501:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
