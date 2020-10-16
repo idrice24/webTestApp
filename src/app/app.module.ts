@@ -1,48 +1,51 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
-import { AdminComponent } from './admin/admin/admin.component';
-import { ManageBlogsComponent } from './admin/manage-blogs/manage-blogs.component';
-import { ManageCategoriesComponent } from './admin/manage-categories/manage-categories.component';
-import { ManagePagesComponent } from './admin/manage-pages/manage-pages.component';
-import { LoginComponent } from './auth/login/login.component';
-import { AboutComponent } from './core/components/about/about.component';
-import { ContactComponent } from './core/components/contact/contact.component';
-import { HomeComponent } from './core/components/home/home.component';
-import { NewsletterComponent } from './core/components/newsletter/newsletter.component';
-import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
-import { RegisteryComponent } from './core/components/registery/registery.component';
-import { SearchResultComponent } from './search/components/search-result/search-result.component';
+import { CoreModule } from './core/core.module';
+// import { BlogModule } from './blog/blog.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+// import { InMemoryDataService } from './in-memory-data.service';
+
+import { MediaModule } from './media/media.module';
 import { SearchUiComponent } from './search/components/search-ui/search-ui.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AdminDashboardComponent,
-    AdminComponent,
-    ManageBlogsComponent,
-    ManageCategoriesComponent,
-    ManagePagesComponent,
-    LoginComponent,
-    AboutComponent,
-    ContactComponent,
-    HomeComponent,
-    NewsletterComponent,
-    PageNotFoundComponent,
-    RegisteryComponent,
-    SearchResultComponent,
-    SearchUiComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    SharedModule
+    FormsModule,
+    HttpClientModule,
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove it when a real server is ready to receive requests.
+  //  HttpClientInMemoryWebApiModule.forRoot(
+  //    InMemoryDataService, { dataEncapsulation: false }),
+    SharedModule,
+    CoreModule,
+//    BlogModule,
+    AppRoutingModule, // CLI adds AppRoutingModule to the AppModule's imports array
+
   ],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  // Diagnostic only: inspect router configuration
+  constructor(router: Router) {
+    // Use a custom replacer to display function names in the route configs
+    const replacer = (key, value) => (typeof value === 'function') ? value.name : value;
+
+    console.log('Routes: ', JSON.stringify(router.config, replacer, 2));
+  }
+}
