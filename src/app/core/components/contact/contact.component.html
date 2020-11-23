@@ -1,1 +1,28 @@
-<p>contact works!</p>
+<div class="stock-container">
+
+	<div class="name"><h3>{{stock.name}}</h3> - <h4>({{stock.code}})</h4></div>
+
+	<div class="price" [class]="stock.isPositiveChange ? 'positive' : 'negative'">$ {{stock.price}}</div>
+
+	<button (click)="toggleFavorite()" *ngIf="!stock.favorite">Add to Favorite</button>
+
+ 	<button class="btn btn-primary" (click)="changeStockPrice()">Change Prince</button>
+ 	
+ 	<button class="btn btn-primary" (click)="changeStockObject()">Change Stock</button>
+</div>
+
+
+
+
+<h2>Create Stock Form</h2>
+
+<div class="form-group">
+	<form (ngSubmit)="createStock()">
+		<div class="stock-name">
+			<input type="text" placeholder="Stock Name" name="stockName" [(ngModel)]="stock.name">
+		</div>
+		<button type="submit">Create</button>
+	</form>
+</div>
+
+<h4 *ngFor="let stock of stocks">Stock Name is now {{stock.name}}</h4>
